@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class PaperControl : MonoBehaviour
 {
-    private bool paper;
+    private bool paperIsCatch;
     private Vector2 paperOriginalPos;
     private bool onTelegraph;
+    public AudioSource paperAudioSourse;
 
     private void Start()
     {
-        paper = false;
+        paperIsCatch = false;
         paperOriginalPos = transform.position;
         onTelegraph = false;
+        paperAudioSourse = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -24,26 +26,29 @@ public class PaperControl : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
             if (hit.collider.gameObject.name == "Paper")
+                //Recordatorio, hacerlo comparando con tags
             {
-                paper = true;
+                paperAudioSourse.Play();
+                paperIsCatch = true;
             }
         }
 
-        if (paper)
+        if (paperIsCatch)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mousePos;
-        }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            paper = false;
-            if (onTelegraph)
+            if (Input.GetMouseButtonUp(0))
             {
-                transform.position = paperOriginalPos;
+                paperAudioSourse.Play();
+                paperIsCatch = false;
+                if (onTelegraph)
+                {
+                    transform.position = paperOriginalPos;
+                }
             }
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.name == "Telegraph")
