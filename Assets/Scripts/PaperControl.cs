@@ -25,7 +25,7 @@ public class PaperControl : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-            if (hit.collider.gameObject.name == "Paper")
+            if (hit.collider != null && hit.collider.gameObject.name == "Paper")
                 //Recordatorio, hacerlo comparando con tags
             {
                 paperAudioSourse.Play();

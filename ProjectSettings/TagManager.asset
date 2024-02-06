@@ -11,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - BackGround
-  - RoomObjects
+  - Button
+  - 
   - 
   - 
   - 
@@ -40,4 +40,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: BackGround
+    uniqueID: 2194489265
+    locked: 0
+  - name: RoomObjects
+    uniqueID: 409623537
     locked: 0
