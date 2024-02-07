@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Page
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,7 @@ TagManager:
     locked: 0
   - name: RoomObjects
     uniqueID: 409623537
+    locked: 0
+  - name: Zoom
+    uniqueID: 2336971327
     locked: 0

@@ -30,6 +30,7 @@ public class PaperControl : MonoBehaviour
             {
                 paperAudioSourse.Play();
                 paperIsCatch = true;
+                transform.GetChild(0).gameObject.SetActive(true);
             }
         }
 
@@ -41,6 +42,7 @@ public class PaperControl : MonoBehaviour
             {
                 paperAudioSourse.Play();
                 paperIsCatch = false;
+                transform.GetChild(0).gameObject.SetActive(false);
                 if (onTelegraph)
                 {
                     transform.position = paperOriginalPos;
