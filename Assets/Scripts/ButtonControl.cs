@@ -7,12 +7,21 @@ using System.Text;
 public class ButtonControl : MonoBehaviour
 {
     public TextMeshProUGUI morseCode;
+    public TextMeshProUGUI traduccion;
+
+    float holdTime = 0.2f;
+    float spaceWaitTime = 2.5f;
+
+    private int wordSeparator;
     private float timePress;
     private float timeBetweenPress;
     private int nLetters;
     private bool telegraphOn;
     private bool pushButton;
     private string morseAux;
+    private string totalText;
+
+    public static string currentSolution;
     void Start()
     {
         timePress = 0;
@@ -21,6 +30,8 @@ public class ButtonControl : MonoBehaviour
         telegraphOn = false;
         pushButton = false;
         morseAux = "";
+        totalText = "";
+        currentSolution = "";
     }
 
     void Update()
@@ -46,17 +57,21 @@ public class ButtonControl : MonoBehaviour
         if (Input.GetMouseButtonUp(0) && pushButton)
         {
             //Debug.Log("press: " + timePress);
-            if (timePress > 1)
+            if (timePress > holdTime)
             {
                 morseAux = morseCode.text;
                 morseAux += "-";
+                totalText += "-";
                 morseCode.text = morseAux;
+                wordSeparator = 0;
             }
             else
             {
                 morseAux = morseCode.text;
                 morseAux += ".";
+                totalText += ".";
                 morseCode.text = morseAux;
+                wordSeparator = 0;
             }
             timePress = 0;
             timeBetweenPress = 0;
@@ -76,13 +91,42 @@ public class ButtonControl : MonoBehaviour
         if (telegraphOn) 
         {
             timeBetweenPress += Time.deltaTime;
-            if (timeBetweenPress > 8) 
+            if (timeBetweenPress > spaceWaitTime && wordSeparator < 2 && !Input.GetMouseButton(0)) 
             {
                 morseCode.text += "/";
+                totalText += "/";
                 timePress = 0;
                 timeBetweenPress = 0;
                 nLetters++;
+                wordSeparator++;
             }
         }// Habra que poner telegraphOn en false cuando termine con la ultima letra del paper
+
+        string aux = Traductor.translate(totalText);
+        if (aux == "") totalText = "";
+        traduccion.text = aux;
+
+        if (aux.EndsWith(" arc "))
+        {
+            print("Fin de la transmision");
+
+            if (aux == currentSolution + " arc ")
+            {
+                print("Solucion correcta");
+
+
+
+
+            }
+
+
+            
+            
+
+
+
+
+        }
+
     }
 }

@@ -7,7 +7,7 @@ public class BookControl : MonoBehaviour
     private bool bookIsCatch;
     private Vector2 bookOriginalPos;
     private Vector2 mouseOriginalPos;
-    private Vector2 mouseBookDiff;
+    private Vector2 offset;
     private bool onTelegraph;
 
     public int current;
@@ -19,7 +19,7 @@ public class BookControl : MonoBehaviour
         bookIsCatch = false;
         bookOriginalPos = transform.position;
 
-        mouseBookDiff.x = mouseBookDiff.y = 0;
+        offset = new Vector2(0,0);
         onTelegraph = false;
         //paperAudioSourse = GetComponent<AudioSource>();
 
@@ -41,7 +41,7 @@ public class BookControl : MonoBehaviour
             mouseOriginalPos = mousePos;
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-            mouseBookDiff = bookOriginalPos - mousePos;
+            offset = bookOriginalPos - mousePos;
 
             if (hit.collider != null && hit.collider.gameObject.name == "Book")
                 //Recordatorio, hacerlo comparando con tags
@@ -54,21 +54,17 @@ public class BookControl : MonoBehaviour
         if (bookIsCatch)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = mousePos + mouseBookDiff;
+            transform.position = mousePos + offset;
 
             if (Input.GetMouseButtonUp(0))
             {
                 bookIsCatch = false;
                 if (mouseOriginalPos == mousePos) // Click
                 {
-                    print("CLICK");
-
                     transform.GetChild(current).gameObject.SetActive(true);
                 }
                 else // End of Drag
                 {
-                    print("END OF DRAG");
-
                     if (onTelegraph)
                     {
                         transform.position = bookOriginalPos;

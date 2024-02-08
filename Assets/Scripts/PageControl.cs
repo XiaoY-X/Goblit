@@ -5,13 +5,10 @@ using UnityEngine;
 public class PageControl : MonoBehaviour
 {
     //public AudioSource paperAudioSourse;
-    private GameObject[] pages;
-    private int current;
 
     private void Start()
     {
 
-        print("PAPER INITITATED | CURRENT ");
 
     }
 
@@ -23,11 +20,8 @@ public class PageControl : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
 
-            print("clickedd");
             if (hit.collider != null && hit.collider.gameObject.tag == "Page") // Se clickea en la pagina
             {
-                print("Inside page");
-
                 int currentPage = transform.GetComponentInParent<BookControl>().getCurrent();
                 transform.GetComponentInParent<BookControl>().incCurrent();
 
@@ -38,7 +32,6 @@ public class PageControl : MonoBehaviour
             }
             else // Se clickea fuera
             {
-                print("Outside page");
                 int currentPage = transform.GetComponentInParent<BookControl>().getCurrent();
                 transform.parent.GetChild(currentPage).gameObject.SetActive(false);
             }

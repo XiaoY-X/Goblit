@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PaperControl : MonoBehaviour
 {
     private bool paperIsCatch;
     private Vector2 paperOriginalPos;
+    private Vector2 offset;
     private bool onTelegraph;
     public AudioSource paperAudioSourse;
+    public TextMeshProUGUI textoGUI1;
+    public string texto1;
+    public string solucion;
 
     private void Start()
     {
@@ -15,15 +20,21 @@ public class PaperControl : MonoBehaviour
         paperOriginalPos = transform.position;
         onTelegraph = false;
         paperAudioSourse = GetComponent<AudioSource>();
-    }
+        textoGUI1.text = texto1;
+    
 
+        ButtonControl.currentSolution = solucion;
+    }
     private void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             paperOriginalPos = transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
+
+            offset = paperOriginalPos - mousePos;
 
             if (hit.collider != null && hit.collider.gameObject.name == "Paper")
                 //Recordatorio, hacerlo comparando con tags
@@ -37,7 +48,7 @@ public class PaperControl : MonoBehaviour
         if (paperIsCatch)
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = mousePos;
+            transform.position = mousePos + offset;
             if (Input.GetMouseButtonUp(0))
             {
                 paperAudioSourse.Play();
