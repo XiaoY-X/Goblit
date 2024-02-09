@@ -11,7 +11,9 @@ public class PaperControl : MonoBehaviour
     private bool onTelegraph;
     public AudioSource paperAudioSourse;
     public TextMeshProUGUI textoGUI1;
+    public TextMeshProUGUI textoGUI2;
     public string texto1;
+    public string texto2;
     public string solucion;
 
     private void Start()
@@ -21,8 +23,10 @@ public class PaperControl : MonoBehaviour
         onTelegraph = false;
         paperAudioSourse = GetComponent<AudioSource>();
         textoGUI1.text = texto1;
-    
+        textoGUI2.text = texto2;
 
+
+        // Para testing solo
         ButtonControl.currentSolution = solucion;
     }
     private void Update()

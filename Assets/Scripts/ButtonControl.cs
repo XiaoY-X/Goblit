@@ -20,6 +20,8 @@ public class ButtonControl : MonoBehaviour
     private bool pushButton;
     private string morseAux;
     private string totalText;
+    private float cursorInd = 0;
+    public float timeCursorFlicker;
 
     public static string currentSolution;
     void Start()
@@ -32,11 +34,12 @@ public class ButtonControl : MonoBehaviour
         morseAux = "";
         totalText = "";
         currentSolution = "";
+
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             int layerMask = 1 << LayerMask.NameToLayer("Button");
@@ -47,14 +50,16 @@ public class ButtonControl : MonoBehaviour
                 pushButton = true;
                 telegraphOn = true;
             }// Recordatorio: comparar con tags
-        }
 
-        if (Input.GetMouseButton(0) && pushButton)
+            
+        }
+        
+        if ((Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space)) && pushButton)
         {
             timePress += Time.deltaTime;
         }
 
-        if (Input.GetMouseButtonUp(0) && pushButton)
+        if ((Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) && pushButton)
         {
             //Debug.Log("press: " + timePress);
             if (timePress > holdTime)
@@ -105,6 +110,28 @@ public class ButtonControl : MonoBehaviour
         string aux = Traductor.translate(totalText);
         if (aux == "") totalText = "";
         traduccion.text = aux;
+        if (aux.EndsWith(" "))
+        {
+            traduccion.text = traduccion.text.Remove(aux.Length - 1);
+
+            if (cursorInd > timeCursorFlicker * 2)
+            {
+                cursorInd = 0;
+            }
+            else if (cursorInd < timeCursorFlicker)
+            {
+                traduccion.text += "|";
+            }
+            /*
+            else if (cursorInd < timeCursorFlicker * 2)
+            {
+                //print("No barra");
+            }
+            */
+            cursorInd += Time.deltaTime;
+
+
+        }
 
         if (aux.EndsWith(" arc "))
         {
