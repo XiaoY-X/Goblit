@@ -8,10 +8,10 @@ public class BookControl : MonoBehaviour
     private Vector2 bookOriginalPos;
     private Vector2 mouseOriginalPos;
     private Vector2 offset;
-    private bool onTelegraph;
+    public bool onTelegraph;
 
     public int current;
-
+    public GameObject closeButton;
     //public AudioSource paperAudioSourse;
 
     private void Start()
@@ -62,6 +62,8 @@ public class BookControl : MonoBehaviour
                 if (mouseOriginalPos == mousePos) // Click
                 {
                     transform.GetChild(current).gameObject.SetActive(true);
+                    closeButton.SetActive(true);
+                    
                 }
                 else // End of Drag
                 {
@@ -102,6 +104,6 @@ public class BookControl : MonoBehaviour
 
     public void incCurrent()
     {
-        current = (current + 1) % transform.childCount;
+        current = (current + 1) % (transform.childCount - 1);
     }
 }
