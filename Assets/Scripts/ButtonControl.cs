@@ -24,6 +24,9 @@ public class ButtonControl : MonoBehaviour
     public float timeCursorFlicker;
 
     public string currentSolution;
+    public AudioSource buttonAudioSrc;
+    public AudioSource puntoAudioSrc;
+    public AudioSource guionAudioSrc;
     void Start()
     {
         timePress = 0;
@@ -34,18 +37,23 @@ public class ButtonControl : MonoBehaviour
         morseAux = "";
         totalText = "";
 
-    }
+        buttonAudioSrc = GetComponents<AudioSource>()[0];
+        puntoAudioSrc = GetComponents<AudioSource>()[1];
+        guionAudioSrc = GetComponents<AudioSource>()[2];
+}
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
         {
+
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             int layerMask = 1 << LayerMask.NameToLayer("Button");
             RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero, 0, layerMask);
 
             if (hit.collider != null && hit.collider.gameObject.name == "Button")
             {
+                buttonAudioSrc.Play();
                 pushButton = true;
                 telegraphOn = true;
             }// Recordatorio: comparar con tags
@@ -56,6 +64,13 @@ public class ButtonControl : MonoBehaviour
         if ((Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space)) && pushButton)
         {
             timePress += Time.deltaTime;
+
+            if (!puntoAudioSrc.isPlaying)
+            {
+                puntoAudioSrc.Play();
+            }
+            
+            //guionAudioSrc.Play();
         }
 
         if ((Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) && pushButton)
