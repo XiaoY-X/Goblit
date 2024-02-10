@@ -27,7 +27,7 @@ public class PaperControl : MonoBehaviour
 
 
         // Para testing solo
-        ButtonControl.currentSolution = solucion;
+        GameObject.Find("Button").GetComponent<ButtonControl>().currentSolution = solucion;
     }
     private void Update()
     {

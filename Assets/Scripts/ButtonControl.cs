@@ -23,7 +23,7 @@ public class ButtonControl : MonoBehaviour
     private float cursorInd = 0;
     public float timeCursorFlicker;
 
-    public static string currentSolution;
+    public string currentSolution;
     void Start()
     {
         timePress = 0;
@@ -33,7 +33,6 @@ public class ButtonControl : MonoBehaviour
         pushButton = false;
         morseAux = "";
         totalText = "";
-        currentSolution = "";
 
     }
 
@@ -100,6 +99,7 @@ public class ButtonControl : MonoBehaviour
             {
                 morseCode.text += "/";
                 totalText += "/";
+
                 timePress = 0;
                 timeBetweenPress = 0;
                 nLetters++;
