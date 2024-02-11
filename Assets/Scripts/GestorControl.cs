@@ -17,6 +17,8 @@ public class GestorControl : MonoBehaviour
         counterMission = 1;
         NewPaper();
         texto1 = "";
+
+
     }
 
     private void Update()

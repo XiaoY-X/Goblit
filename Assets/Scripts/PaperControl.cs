@@ -16,6 +16,8 @@ public class PaperControl : MonoBehaviour
     public string texto2;
     public string solucion;
 
+    private GameObject tutorial;
+    private TutorialController tutorialControl;
     private void Start()
     {
         paperIsCatch = false;
@@ -25,8 +27,9 @@ public class PaperControl : MonoBehaviour
         textoGUI1.text = texto1;
         textoGUI2.text = texto2;
 
+        tutorial = GameObject.FindGameObjectWithTag("Tutorial");
+        tutorialControl = tutorial.GetComponent<TutorialController>();
 
-        
     }
     private void Update()
     {
@@ -36,7 +39,7 @@ public class PaperControl : MonoBehaviour
         //textoGUI1.text = texto1;
         //textoGUI2.text = texto2;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && tutorialControl.botonesDisponibles)
         {
             paperOriginalPos = transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -57,7 +60,7 @@ public class PaperControl : MonoBehaviour
         {
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mousePos + offset;
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && tutorialControl.botonesDisponibles)
             {
                 paperAudioSourse.Play();
                 paperIsCatch = false;

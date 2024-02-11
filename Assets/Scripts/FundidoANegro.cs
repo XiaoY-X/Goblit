@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -61,13 +60,10 @@ public class FundidoANegro : MonoBehaviour
             }
 
             timer += Time.deltaTime;
-            if (timer > 20.0f)
+            if (timer > 10.0f)
             {
                 SceneManager.LoadScene("Start");
-
-
             }
-
 
 
         }

@@ -19,7 +19,10 @@ public class TelegraphControl : MonoBehaviour
     public Boolean solucionCorrecta;
     public int hombres;
     public GameObject negro;
+    public Boolean empiezaJuego;
 
+    private GameObject tutorial;
+    private TutorialController tutorialControl;
     void Start()
     {
         success = false;
@@ -28,19 +31,31 @@ public class TelegraphControl : MonoBehaviour
         gestor = GameObject.Find("Gestor");
         gestorControl = gestor.GetComponent<GestorControl>();
 
-        reloj.Play();
+        
         reloj.volume = 0.0f;
         missionTime = 0.0f;
         oneSecond = 0.0f;
         solucionCorrecta = false;
         hombres = 20;
         negro.SetActive(false);
+        empiezaJuego = false;
+
+        tutorial = GameObject.FindGameObjectWithTag("Tutorial");
+        tutorialControl = tutorial.GetComponent<TutorialController>();
     }
 
     void Update()
     {
         missionTime += Time.deltaTime;
         oneSecond += Time.deltaTime;
+
+        if (empiezaJuego)
+        {
+            reloj.Play();
+            reloj.volume = 0.0f;
+            missionTime = 0.0f;
+            empiezaJuego = false;
+        }
 
         if (oneSecond > 1)
         {
@@ -184,6 +199,8 @@ public class TelegraphControl : MonoBehaviour
                     negro.SetActive(true);
                     negro.GetComponent<FundidoANegro>().gameEnded = true;
                     negro.GetComponent<FundidoANegro>().soldados = hombres;
+
+                    tutorialControl.botonesDisponibles = true;
                     break;
                 default:
 

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -26,6 +26,9 @@ public class ButtonControl : MonoBehaviour
     public string currentSolution;
     public AudioSource buttonAudioSrc;
     public AudioSource puntoAudioSrc;
+
+    private GameObject tutorial;
+    private TutorialController tutorialControl;
     void Start()
     {
         timePress = 0;
@@ -38,11 +41,14 @@ public class ButtonControl : MonoBehaviour
 
         buttonAudioSrc = GetComponents<AudioSource>()[0];
         puntoAudioSrc = GetComponents<AudioSource>()[1];
+
+        tutorial = GameObject.FindGameObjectWithTag("Tutorial");
+        tutorialControl = tutorial.GetComponent<TutorialController>();
 }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0) && tutorialControl.botonesDisponibles)
         {
 
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -56,12 +62,13 @@ public class ButtonControl : MonoBehaviour
                 //puntoAudioSrc.Play();
                 pushButton = true;
                 telegraphOn = true;
-            }// Recordatorio: comparar con tags
 
-            
+                transform.GetComponent<Renderer>().enabled = false;
+                transform.parent.Find("ButtonPulsado").GetComponent<Renderer>().enabled = true;
+            }// Recordatorio: comparar con tags
         }
         
-        if ((Input.GetMouseButton(0) || Input.GetKeyDown(KeyCode.Space)) && pushButton)
+        if (Input.GetMouseButton(0) && pushButton && tutorialControl.botonesDisponibles)
         {
             timePress += Time.deltaTime;
 
@@ -73,7 +80,7 @@ public class ButtonControl : MonoBehaviour
             //guionAudioSrc.Play();
         }
 
-        if ((Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) && pushButton)
+        if (Input.GetMouseButtonUp(0) && pushButton && tutorialControl.botonesDisponibles)
         {
             //Debug.Log("press: " + timePress);
             puntoAudioSrc.Stop();
@@ -97,6 +104,9 @@ public class ButtonControl : MonoBehaviour
             timeBetweenPress = 0;
             nLetters++;
             pushButton = false;
+
+            transform.GetComponent<Renderer>().enabled = true;
+            transform.parent.Find("ButtonPulsado").GetComponent<Renderer>().enabled = false;
         }
 
         //Debug.Log(nLetters);
@@ -137,6 +147,10 @@ public class ButtonControl : MonoBehaviour
             else if (cursorInd < timeCursorFlicker)
             {
                 traduccion.text += "|";
+            }
+            else
+            {
+                traduccion.text += " ";
             }
             /*
             else if (cursorInd < timeCursorFlicker * 2)

@@ -14,6 +14,9 @@ public class BookControl : MonoBehaviour
     public GameObject closeButton;
     //public AudioSource paperAudioSourse;
 
+    private GameObject tutorial;
+    private TutorialController tutorialControl;
+
     private void Start()
     {
         bookIsCatch = false;
@@ -30,11 +33,13 @@ public class BookControl : MonoBehaviour
         }
         current = 0;
 
+        tutorial = GameObject.FindGameObjectWithTag("Tutorial");
+        tutorialControl = tutorial.GetComponent<TutorialController>();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && tutorialControl.botonesDisponibles)
         {
             bookOriginalPos = transform.position;
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -56,7 +61,7 @@ public class BookControl : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = mousePos + offset;
 
-            if (Input.GetMouseButtonUp(0))
+            if (Input.GetMouseButtonUp(0) && tutorialControl.botonesDisponibles)
             {
                 bookIsCatch = false;
                 if (mouseOriginalPos == mousePos) // Click

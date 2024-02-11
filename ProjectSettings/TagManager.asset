@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Page
   - Paper
+  - Telegraph
+  - Tutorial
   layers:
   - Default
   - TransparentFX
@@ -14,7 +16,7 @@ TagManager:
   - Water
   - UI
   - Button
-  - 
+  - Tutorial
   - 
   - 
   - 
