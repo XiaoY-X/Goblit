@@ -264,7 +264,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.64, y: 0.64}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -593,9 +593,9 @@ Transform:
   m_LocalScale: {x: 2.6204, y: 3.6024, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2767703722663085663}
   - {fileID: 3344571226953708081}
   - {fileID: 2745928303380951795}
+  - {fileID: 2767703722663085663}
   - {fileID: 1698102062879398629}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
