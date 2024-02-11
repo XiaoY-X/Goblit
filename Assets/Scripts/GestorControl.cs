@@ -19,14 +19,12 @@ public class GestorControl : MonoBehaviour
 
     private void Update()
     {
-        print("changePaper: " + changePaper + " | n: " + counterMission);
         if (changePaper)
         {
             changePaper = false;
             counterMission++;
             NewPaper();
         }
-        print("NEW changePaper: " + changePaper + " | n: " + counterMission);
     }
 
     private void NewPaper()

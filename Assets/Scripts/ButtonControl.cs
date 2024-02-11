@@ -26,7 +26,6 @@ public class ButtonControl : MonoBehaviour
     public string currentSolution;
     public AudioSource buttonAudioSrc;
     public AudioSource puntoAudioSrc;
-    public AudioSource guionAudioSrc;
     void Start()
     {
         timePress = 0;
@@ -39,7 +38,6 @@ public class ButtonControl : MonoBehaviour
 
         buttonAudioSrc = GetComponents<AudioSource>()[0];
         puntoAudioSrc = GetComponents<AudioSource>()[1];
-        guionAudioSrc = GetComponents<AudioSource>()[2];
 }
 
     void Update()

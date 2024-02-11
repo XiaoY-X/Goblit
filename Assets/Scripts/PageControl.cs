@@ -11,6 +11,7 @@ public class PageControl : MonoBehaviour
     private Vector2 bookOriginalPos;
     private Vector2 mouseOriginalPos;
     private Vector2 offset;
+    //public AudioSource cambiarPagina;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class PageControl : MonoBehaviour
         bookOriginalPos = transform.parent.transform.position;
 
         offset = new Vector2(0, 0);
-
+        //cambiarPagina.Play();
     }
 
     private void Update()
