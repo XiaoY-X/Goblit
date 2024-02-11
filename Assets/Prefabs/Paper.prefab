@@ -176,10 +176,9 @@ MonoBehaviour:
   paperAudioSourse: {fileID: 324651927289900586}
   textoGUI1: {fileID: 6622931385145222801}
   textoGUI2: {fileID: 6217866595242153199}
-  texto1: Mision pasada
-  texto2: "Escribe en el tel\xE9grafo sos recuerda que tienes que terminar el mensaje
-    con arc"
-  solucion: sos
+  texto1: 
+  texto2: 
+  solucion: 
 --- !u!82 &324651927289900586
 AudioSource:
   m_ObjectHideFlags: 0

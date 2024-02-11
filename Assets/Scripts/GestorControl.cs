@@ -13,18 +13,23 @@ public class GestorControl : MonoBehaviour
     private void Start()
     {
         changePaper = false;
-        counterMission = 0;
+        counterMission = 1;
+        NewPaper();
     }
 
     private void Update()
     {
+        print("changePaper: " + changePaper + " | n: " + counterMission);
         if (changePaper)
         {
-            newPaper();
+            changePaper = false;
+            counterMission++;
+            NewPaper();
         }
+        print("NEW changePaper: " + changePaper + " | n: " + counterMission);
     }
 
-    private void newPaper()
+    private void NewPaper()
     {
         GameObject oldPaper = GameObject.FindGameObjectWithTag("Paper");
         if (oldPaper != null)
@@ -32,7 +37,10 @@ public class GestorControl : MonoBehaviour
             Destroy(oldPaper);
         }
         paper = Instantiate(paperPrefab);
-        counterMission++;
+        if (oldPaper != null)
+        {
+            paper.transform.position = oldPaper.transform.position;
+        }
         PaperControl paperControl = paper.GetComponent<PaperControl>();
         if (paperControl != null) 
         {
@@ -43,16 +51,16 @@ public class GestorControl : MonoBehaviour
                 // del documento en case 1
                 case 1:
                     //No se que son text1 y text2, pero supongo que uno de los texts es la mision recibida y la otra solucion es la solucion
-                    paperControl.texto1 = "";
-                    paperControl.solucion = "";
+                    paperControl.texto1 = "Mision 1";
+                    paperControl.solucion = "a";
                     break;
                 case 2:
-                    paperControl.texto1 = "";
-                    paperControl.solucion = "";
+                    paperControl.texto1 = "Mision 2";
+                    paperControl.solucion = "sos";
                     break;
                 case 3:
-                    paperControl.texto1 = "";
-                    paperControl.solucion = "";
+                    paperControl.texto1 = "Mision 3";
+                    paperControl.solucion = "c";
                     break;
                 case 4:
                     paperControl.texto1 = "";
@@ -76,6 +84,6 @@ public class GestorControl : MonoBehaviour
                     break;
             }
         }
-        changePaper = false;
+        
     }
 }

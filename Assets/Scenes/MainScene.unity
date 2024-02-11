@@ -777,6 +777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   morseCode: {fileID: 77691727}
   traduccion: {fileID: 1717216872}
+  totalText: 
   timeCursorFlicker: 0.3
   currentSolution: 
   buttonAudioSrc: {fileID: 841736012}
@@ -888,7 +889,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 36c0b4c0f96aae2419267fd2dd1c697b, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ae54eef738ec8ca46aebeaf37ae089ae, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -1202,7 +1203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 759c08d5debad274d8c620317d6ac6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paperPrefab: {fileID: 0}
+  paperPrefab: {fileID: 9095605897703275544, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
   changePaper: 0
   counterMission: 0
 --- !u!4 &978617852
@@ -2000,63 +2001,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d347c0acdda3810498193ceed5f4a2fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &2109522810281978416
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -5.94
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4385478506998531510, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9095605897703275544, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
-      propertyPath: m_Name
-      value: Paper
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 241f5fb1bcbe4c743bb3612b967bb2d0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2066,7 +2010,6 @@ SceneRoots:
   - {fileID: 18661644}
   - {fileID: 599908616}
   - {fileID: 2147151060}
-  - {fileID: 2109522810281978416}
   - {fileID: 847496204}
   - {fileID: 2010707158}
   - {fileID: 1609173575}

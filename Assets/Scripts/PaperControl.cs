@@ -26,11 +26,13 @@ public class PaperControl : MonoBehaviour
         textoGUI2.text = texto2;
 
 
-        // Para testing solo
-        GameObject.Find("Button").GetComponent<ButtonControl>().currentSolution = solucion;
+        
     }
     private void Update()
     {
+        // Para testing solo
+        GameObject.Find("Button").GetComponent<ButtonControl>().currentSolution = solucion;
+
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -40,7 +42,7 @@ public class PaperControl : MonoBehaviour
 
             offset = paperOriginalPos - mousePos;
 
-            if (hit.collider != null && hit.collider.gameObject.name == "Paper")
+            if (hit.collider != null && hit.collider.gameObject.tag == "Paper")
                 //Recordatorio, hacerlo comparando con tags
             {
                 paperAudioSourse.Play();

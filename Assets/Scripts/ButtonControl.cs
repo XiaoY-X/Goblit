@@ -19,7 +19,7 @@ public class ButtonControl : MonoBehaviour
     private bool telegraphOn;
     private bool pushButton;
     private string morseAux;
-    private string totalText;
+    public string totalText;
     private float cursorInd = 0;
     public float timeCursorFlicker;
 
@@ -54,6 +54,8 @@ public class ButtonControl : MonoBehaviour
             if (hit.collider != null && hit.collider.gameObject.name == "Button")
             {
                 buttonAudioSrc.Play();
+                puntoAudioSrc.time = 0.5f;
+                //puntoAudioSrc.Play();
                 pushButton = true;
                 telegraphOn = true;
             }// Recordatorio: comparar con tags
@@ -76,6 +78,7 @@ public class ButtonControl : MonoBehaviour
         if ((Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space)) && pushButton)
         {
             //Debug.Log("press: " + timePress);
+            puntoAudioSrc.Stop();
             if (timePress > holdTime)
             {
                 morseAux = morseCode.text;
@@ -148,27 +151,20 @@ public class ButtonControl : MonoBehaviour
 
         }
 
+        /*
         if (aux.EndsWith(" arc "))
         {
             print("Fin de la transmision");
 
             if (aux == currentSolution + " arc ")
             {
-                print("Solucion correcta");
-
-
-
-
             }
-
-
-            
-            
-
-
-
-
         }
+        */
+
+            
+            
+
 
     }
 }

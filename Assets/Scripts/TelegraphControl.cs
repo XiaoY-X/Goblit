@@ -22,12 +22,15 @@ public class TelegraphControl : MonoBehaviour
     {
         GameObject paper = GameObject.FindGameObjectWithTag("Paper");
         PaperControl paperControl = paper.GetComponent<PaperControl>();
-        if (buttonControl.traduccion.text == paperControl.solucion || paperControl.solucion == null) 
+
+        if (Traductor.translate(buttonControl.totalText).Trim() == paperControl.solucion + " arc")  // || paperControl.solucion == null
         {
             success = true;
+            gestorControl.changePaper = true;
+            buttonControl.totalText = "";
         }
-        gestorControl.changePaper = true;
-        if (gestorControl.changePaper) 
+        
+        if (success)
         {
             switch (gestorControl.counterMission)
             {
