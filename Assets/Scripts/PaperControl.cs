@@ -33,6 +33,8 @@ public class PaperControl : MonoBehaviour
         // Para testing solo
         GameObject.Find("Button").GetComponent<ButtonControl>().currentSolution = solucion;
 
+        //textoGUI1.text = texto1;
+        //textoGUI2.text = texto2;
 
         if (Input.GetMouseButtonDown(0))
         {

@@ -283,6 +283,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4385478506998531510}
     m_Modifications:
+    - target: {fileID: 219374778969083501, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 219374778969083501, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 998141563011073015, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.5
@@ -329,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1056179368731163667, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_fontSizeMax
-      value: 30
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1056179368731163667, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_overflowMode
@@ -349,7 +357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1056179368731163667, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_HorizontalAlignment
-      value: 16
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5986334239182145123, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_Name

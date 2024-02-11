@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialController : MonoBehaviour
 {
@@ -12,12 +13,21 @@ public class TutorialController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        textosTutorial = new string[3];
-        textosTutorial[0] = "Texto 1";
-        textosTutorial[1] = "Texto 2";
-        textosTutorial[2] = "Texto 3";
+        textosTutorial = new string[4];
+        textosTutorial[0] = "Buenos días soldado,\n\nBienvenido a su nuevo puesto en la unidad de comunicaciones Hermes-42, su nueva tarea a partir de este mismo instante es recibir mensajes y enviarlos por el telégrafo al equipo de avanzadilla Panther-UPT...";
+        textosTutorial[1] = "Este atento a mensajes enemigos soldado, si recibe alguno transmita solo \"arc\"...";
+        textosTutorial[2] = "Una última cosa, el equipo no dispone de señalizadores de posición o bengalas...";
+        textosTutorial[3] = "La vida de estos 20 soldados está en sus manos soldado, su misión es esencial para ganar la guerra. Cada error tendrá devastadoras consecuencias y el tiempo es crucial. ¡No nos defraude!\n\nGeneral Griveous";
 
         currentText = 0;
+
+        try
+        {
+            tutorialText.text = textosTutorial[currentText];
+        }
+        catch (System.Exception)
+        {
+        }
         
     }
 
@@ -25,11 +35,11 @@ public class TutorialController : MonoBehaviour
     void Update()
     {
 
-        tutorialText.text = "adas"; //textosTutorial[currentText];
 
+        
+        
         if (Input.GetMouseButtonDown(0))
         {
-            print("click");
             if (currentText == textosTutorial.Length - 1)
             {
                 Destroy(gameObject);
@@ -37,7 +47,14 @@ public class TutorialController : MonoBehaviour
             else
             {
                 currentText++;
-                tutorialText.text = textosTutorial[currentText];    
+                try
+                {
+                    tutorialText.text = textosTutorial[currentText];
+                }
+                catch (System.Exception)
+                {
+                }
+                 
             }
 
 

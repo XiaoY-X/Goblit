@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class TelegraphControl : MonoBehaviour
@@ -12,6 +15,11 @@ public class TelegraphControl : MonoBehaviour
     public AudioSource reloj;
     public float missionTime;
     public float oneSecond;
+
+    public Boolean solucionCorrecta;
+    public int hombres;
+    public GameObject negro;
+
     void Start()
     {
         success = false;
@@ -24,6 +32,9 @@ public class TelegraphControl : MonoBehaviour
         reloj.volume = 0.0f;
         missionTime = 0.0f;
         oneSecond = 0.0f;
+        solucionCorrecta = false;
+        hombres = 20;
+        negro.SetActive(false);
     }
 
     void Update()
@@ -41,7 +52,8 @@ public class TelegraphControl : MonoBehaviour
         GameObject paper = GameObject.FindGameObjectWithTag("Paper");
         PaperControl paperControl = paper.GetComponent<PaperControl>();
 
-        if (Traductor.translate(buttonControl.totalText).Trim() == paperControl.solucion + " arc")  // || paperControl.solucion == null
+        // solucionCorrecta es para cheat
+        if (Traductor.translate(buttonControl.totalText).Trim() == paperControl.solucion + " arc" || solucionCorrecta)  // || paperControl.solucion == null
         {
             success = true;
             gestorControl.changePaper = true;
@@ -49,39 +61,129 @@ public class TelegraphControl : MonoBehaviour
             reloj.Play();
             reloj.volume = 0.0f;
             missionTime = 0.0f;
+
+
+
+            solucionCorrecta = false;
+        }
+        else if (Traductor.translate(buttonControl.totalText).Trim().EndsWith("arc") || missionTime > 100) // Fallas la mision 
+        {
+            success = false;
+            gestorControl.changePaper = true;
+            buttonControl.totalText = "";
+            reloj.Play();
+            reloj.volume = 0.0f;
+            missionTime = 0.0f;
         }
         
-        if (success)
+        if (gestorControl.changePaper)
         {
             switch (gestorControl.counterMission)
             {
                 case 1:
                     if (success)
                     {
-                        //Mensaje de Exito
+                        gestorControl.texto1 = "Reporte previo:\nConexión exitosa";
                     }
                     else
                     {
-                        //Mensaje de Fallo
+                        gestorControl.texto1 = "Reporte previo:\nError en la conexión";
+                        hombres -= 0;
                     }
                     break;
                 case 2:
-
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nAvance realizado con éxito";
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos perdido 3 hombres";
+                        hombres -= 3;
+                    }
                     break;
                 case 3:
-
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nLos cazas no han detectado a la fuerza de ataque aliada";
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos perdido 8 hombres";
+                        hombres -= 8;
+                    }
                     break;
                 case 4:
-
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nAsalto realizado con éxito";
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos perdido 6 hombres";
+                        hombres -= 6;
+                    }
                     break;
                 case 5:
-
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos conseguido despistar a los francotiradores";
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos perdido 4 hombres";
+                        hombres -= 4;
+                    }
                     break;
                 case 6:
-
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nAvance realizado con éxito";
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos perdido 3 hombres";
+                        hombres -= 3;
+                    }
                     break;
-                case 7:
+                case 7: // Trampa
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nEra una trampa enemiga, hemos perdido 10 hombres";
+                        hombres -= 10;
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nTrampa detectada con éxito";
+                    }
+                    break;
+                case 8:
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nLas tropas están a salvo";
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos perdido 3 hombres";
+                        hombres -= 3;
+                    }
+                    break;
+                case 9:
+                    if (success)
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nAsalto realizado con éxito";
+                    }
+                    else
+                    {
+                        gestorControl.texto1 = "Reporte previo:\nHemos perdido 4 hombres";
+                        hombres -= 4;
+                    }
+                    break;
+                case 10:
 
+                    negro.SetActive(true);
+                    negro.GetComponent<FundidoANegro>().gameEnded = true;
+                    negro.GetComponent<FundidoANegro>().soldados = hombres;
                     break;
                 default:
 
