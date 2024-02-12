@@ -19,7 +19,7 @@ public class TutorialController : MonoBehaviour
         textosTutorial[0] = "Buenos días soldado,\n\nBienvenido a su nuevo puesto en la unidad de comunicaciones Hermes-42, " +
             "su nueva tarea a partir de este mismo instante es recibir mensajes y enviarlos por el telégrafo al equipo de avanzadilla " +
             "Panther-UPT...";
-        textosTutorial[1] = "Le hemos dejado una nota en el escritorio donde iremos actualizando su deber, y también se le ha" +
+        textosTutorial[1] = "Le hemos dejado una nota en el escritorio donde iremos actualizando su deber, y también se le ha " +
             "proporcionado un libro con instrucciones básicas de protocolo...";
         textosTutorial[2] = "Este atento a mensajes enemigos soldado, si recibe alguno, transmita solo \"arc\".\n" +
             "Una última cosa, el equipo no dispone de señalizadores de posición o bengalas...";
@@ -49,15 +49,13 @@ public class TutorialController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
 
-
+            currentText++;
             if (currentText == textosTutorial.Length - 1)
             {
                 GameObject tele = GameObject.FindGameObjectWithTag("Telegraph");
                 TelegraphControl teleControl = tele.GetComponent<TelegraphControl>();
                 teleControl.empiezaJuego = true;
                 botonesDisponibles = true;
-
-
 
                 GetComponent<Renderer>().enabled = false;
                 for (int i = 0; i < transform.childCount; i++)
@@ -66,9 +64,8 @@ public class TutorialController : MonoBehaviour
                 }
                 //Destroy(gameObject);
             }
-            else
+            else if (currentText < textosTutorial.Length - 1)
             {
-                currentText++;
                 try
                 {
                     tutorialText.text = textosTutorial[currentText];
@@ -78,8 +75,7 @@ public class TutorialController : MonoBehaviour
                 }
                  
             }
-
-
+            
         }
 
 

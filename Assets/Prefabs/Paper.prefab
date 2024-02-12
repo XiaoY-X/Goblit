@@ -292,6 +292,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 219374778969083501, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 219374778969083501, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 1
       objectReference: {fileID: 0}
@@ -352,6 +356,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1056179368731163667, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056179368731163667, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_overflowMode
       value: 0
       objectReference: {fileID: 0}
@@ -394,6 +402,10 @@ PrefabInstance:
     - target: {fileID: 1068839899643664964, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -11.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2613609760847937804, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3418636739237575265, guid: 03204497ac40abc49841b0af6c883fc9, type: 3}
       propertyPath: m_SizeDelta.x

@@ -23,6 +23,9 @@ public class TelegraphControl : MonoBehaviour
 
     private GameObject tutorial;
     private TutorialController tutorialControl;
+
+    public AudioSource exito;
+    public AudioSource fracaso;
     void Start()
     {
         success = false;
@@ -31,7 +34,7 @@ public class TelegraphControl : MonoBehaviour
         gestor = GameObject.Find("Gestor");
         gestorControl = gestor.GetComponent<GestorControl>();
 
-        
+        reloj = GetComponents<AudioSource>()[0];
         reloj.volume = 0.0f;
         missionTime = 0.0f;
         oneSecond = 0.0f;
@@ -42,6 +45,9 @@ public class TelegraphControl : MonoBehaviour
 
         tutorial = GameObject.FindGameObjectWithTag("Tutorial");
         tutorialControl = tutorial.GetComponent<TutorialController>();
+
+        exito = GetComponents<AudioSource>()[1];
+        fracaso = GetComponents<AudioSource>()[2];
     }
 
     void Update()
@@ -206,7 +212,17 @@ public class TelegraphControl : MonoBehaviour
 
                     break;
             }
+
+            if ( (success && gestorControl.counterMission != 7) || (!success && gestorControl.counterMission == 7))
+            {
+                exito.Play();
+            }
+            else //( (!success && gestorControl.counterMission != 7) || (success && gestorControl.counterMission == 7)) { }
+            {
+                fracaso.Play();
+            }
         }
+
         success = false;
     }
 }
